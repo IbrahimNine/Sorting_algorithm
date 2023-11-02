@@ -1,0 +1,51 @@
+PROCEDURE Inputs(VAR arr : ARRAY_OF INTEGER[]; length INTEGER)
+VAR
+    i: INTEGER;
+BEGIN
+    FOR i FROM 0 TO length - 1 STEP 1 DO
+        Write("Enter your value of the index ", i, "." )
+        Read(arr[i]);
+    END_FOR
+END
+
+PROCEDURE Sorting(VAR arr : ARRAY_OF INTEGER[]; length INTEGER)
+VAR
+    i, j, elt: INTEGER; 
+BEGIN
+    FOR i FROM 1 TO length - 1 STEP 1 DO
+        elt := arr[i];
+        j := i - 1;
+        WHILE (j >= 0) AND (arr[j] > elt) DO
+            arr[j + 1] := arr[j];
+            j := j - 1;
+        END_WHILE
+        arr[j + 1] := elt;
+    END_FOR
+END
+
+PROCEDURE DisplayOutputs(arr : ARRAY_OF INTEGER[]; length INTEGER)
+VAR
+    i: INTEGER; 
+BEGIN
+    FOR i FROM 0 TO length - 1 STEP 1 DO
+        Write(arr[i], " ");
+    END_FOR
+END
+
+ALGORITHM sort_insertion
+VAR
+    n: INTEGER; 
+    Tab: ARRAY_OF INTEGER[n];  
+BEGIN
+    REPEAT
+        Write("Give a valid size (positive and less than 100): ");
+        Read(n);
+    UNTIL (n > 0) AND (n < 100);
+
+    Inputs(Tab,n);
+
+    Sorting(Tab,n);
+
+    DisplayOutputs(Tab,n);
+
+END
